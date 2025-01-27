@@ -29,6 +29,10 @@ public class Timitomo {
     }
 
     private void printTasks() {
+        if (taskCount == 0) {
+            print("Nothing to do in task list. Stop slacking off!");
+            return;
+        }
         for (int i = 0; i < taskCount; i++) {
             print(String.format("%d. %s", i+1, tasks[i]), i == taskCount - 1);
         }
@@ -39,13 +43,15 @@ public class Timitomo {
         while (true) {
             String input = scanner.nextLine();
             switch (input) {
-            case "list":
-                printTasks();
+            case "":
                 break;
             case "bye":
                 exit();
                 scanner.close();
                 return;
+            case "list":
+                printTasks();
+                break;
             default:
                 addTask(input);
             }
@@ -54,14 +60,14 @@ public class Timitomo {
 
     private void print(String text) {
         for (String line : text.split(System.lineSeparator())) {
-            System.out.println(">> " + line);
+            System.out.println(">>> " + line);
         }
         System.out.println("----------------");
     }
 
     private void print(String text, boolean flag) {
         for (String line : text.split(System.lineSeparator())) {
-            System.out.println(">> " + line);
+            System.out.println(">>> " + line);
         }
         if (flag) {
             System.out.println("----------------");
