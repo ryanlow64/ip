@@ -43,7 +43,7 @@ public class Timitomo {
             throw new IllegalArgumentException("Invalid task number!");
         }
         tasks[index].markAsDone();
-        print(String.format("Nice! I've marked \"%s\" as done.", tasks[index].getDescription()));
+        print(String.format("Nice! I've marked it as done.%n    %s", tasks[index].toString()));
     }
 
     private void unmarkTask(int index) {
@@ -51,7 +51,7 @@ public class Timitomo {
             throw new IllegalArgumentException("Invalid task number!");
         }
         tasks[index].markAsNotDone();
-        print(String.format("I've marked \"%s\" as not done yet. Get to work!", tasks[index].getDescription()));
+        print(String.format("I've marked it as not done yet. Get to work!%n    %s", tasks[index].toString()));
     }
 
     private void handleIO() {

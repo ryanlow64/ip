@@ -19,10 +19,6 @@ public class Task {
         isDone = false;
     }
 
-    protected String getDescription() {
-        return description;
-    }
-
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), description);
