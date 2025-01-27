@@ -1,7 +1,14 @@
 import java.util.Scanner;
 
 public class Timitomo {
-    public Timitomo() {}
+    private String[] tasks;
+    private int taskCount;
+    private static final int MAX_TASKS = 100;
+
+    public Timitomo() {
+        tasks = new String[MAX_TASKS];
+        taskCount = 0;
+    }
 
     private void greet() {
         print("Hello! I'm Timitomo." + System.lineSeparator() + "What can I do for you?");
@@ -11,17 +18,38 @@ public class Timitomo {
         print("Goodbye!");
     }
 
+    private void addTask(String task) {
+        if (taskCount >= MAX_TASKS) {
+            print("Task overflow error! Focus on the current tasks first!");
+            return;
+        }
+        tasks[taskCount] = task;
+        taskCount++;
+        print("added: " + task);
+    }
+
+    private void printTasks() {
+        for (int i = 0; i < taskCount; i++) {
+            print(String.format("%d. %s", i+1, tasks[i]), i == taskCount - 1);
+        }
+    }
+
     private void handleIO() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
-            if (input.equals("bye")) {
-                exit();
+            switch (input) {
+            case "list":
+                printTasks();
                 break;
+            case "bye":
+                exit();
+                scanner.close();
+                return;
+            default:
+                addTask(input);
             }
-            print(input);
         }
-        scanner.close();
     }
 
     private void print(String text) {
@@ -29,6 +57,15 @@ public class Timitomo {
             System.out.println(">> " + line);
         }
         System.out.println("----------------");
+    }
+
+    private void print(String text, boolean flag) {
+        for (String line : text.split(System.lineSeparator())) {
+            System.out.println(">> " + line);
+        }
+        if (flag) {
+            System.out.println("----------------");
+        }
     }
 
     public static void main(String[] args) {
