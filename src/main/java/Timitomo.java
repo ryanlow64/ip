@@ -1,31 +1,31 @@
 import java.util.Scanner;
 
 public class Timitomo {
-    private String[] tasks;
+    private Task[] tasks;
     private int taskCount;
     private static final int MAX_TASKS = 100;
 
     public Timitomo() {
-        tasks = new String[MAX_TASKS];
+        tasks = new Task[MAX_TASKS];
         taskCount = 0;
     }
 
     private void greet() {
-        print("Hello! I'm Timitomo." + System.lineSeparator() + "What can I do for you?");
+        print(String.format("Hello! I'm Timitomo.%nWhat can I do for you?"));
     }
 
     private void exit() {
         print("Goodbye!");
     }
 
-    private void addTask(String task) {
+    private void addTask(String description) {
         if (taskCount >= MAX_TASKS) {
             print("Task overflow error! Focus on the current tasks first!");
             return;
         }
-        tasks[taskCount] = task;
+        tasks[taskCount] = new Task(description);
         taskCount++;
-        print("added: " + task);
+        print("added: " + description);
     }
 
     private void printTasks() {
@@ -38,11 +38,27 @@ public class Timitomo {
         }
     }
 
+    private void markTask(int index) {
+        if (index < 0 || index >= taskCount) {
+            throw new IllegalArgumentException("Invalid task number!");
+        }
+        tasks[index].markAsDone();
+        print(String.format("Nice! I've marked \"%s\" as done.", tasks[index].getDescription()));
+    }
+
+    private void unmarkTask(int index) {
+        if (index < 0 || index >= taskCount) {
+            throw new IllegalArgumentException("Invalid task number!");
+        }
+        tasks[index].markAsNotDone();
+        print(String.format("I've marked \"%s\" as not done yet. Get to work!", tasks[index].getDescription()));
+    }
+
     private void handleIO() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            String input = scanner.nextLine();
-            switch (input) {
+            String[] input = scanner.nextLine().trim().split(" ");
+            switch (input[0]) {
             case "":
                 break;
             case "bye":
@@ -52,8 +68,29 @@ public class Timitomo {
             case "list":
                 printTasks();
                 break;
+            case "mark":
+                try {
+                    int index = Integer.parseInt(input[1]) - 1;
+                    markTask(index);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    print("Specify task number to mark.");
+                } catch (IllegalArgumentException e) {
+                    print(e.getMessage());
+                }
+                break;
+            case "unmark":
+                try {
+                    int index = Integer.parseInt(input[1]) - 1;
+                    unmarkTask(index);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    print("Specify task number to unmark.");
+                } catch (IllegalArgumentException e) {
+                    print(e.getMessage());
+                }
+                break;
             default:
-                addTask(input);
+                String description = String.join(" ", input);
+                addTask(description);
             }
         }
     }
