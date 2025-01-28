@@ -1,0 +1,68 @@
+>>> Hello! I'm Timitomo.
+>>> What can I do for you?
+----------------
+>>> I've added this task:
+>>>   [T][ ] read book
+>>> You have 1 task in the list.
+----------------
+>>> I've added this task:
+>>>   [D][ ] return book (by: June 6th)
+>>> You have 2 tasks in the list.
+----------------
+>>> I've added this task:
+>>>   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+>>> You have 3 tasks in the list.
+----------------
+>>> I've added this task:
+>>>   [T][ ] join sports club
+>>> You have 4 tasks in the list.
+----------------
+>>> I've added this task:
+>>>   [T][ ] borrow book
+>>> You have 5 tasks in the list.
+----------------
+>>> You have 5 tasks in the list. What are you waiting for?
+----------------
+>>> 1. [T][ ] read book
+>>> 2. [D][ ] return book (by: June 6th)
+>>> 3. [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+>>> 4. [T][ ] join sports club
+>>> 5. [T][ ] borrow book
+----------------
+>>> Nice! I've marked it as done:
+>>>   [T][X] read book
+----------------
+>>> Nice! I've marked it as done:
+>>>   [T][X] join sports club
+----------------
+>>> You have 5 tasks in the list. What are you waiting for?
+----------------
+>>> 1. [T][X] read book
+>>> 2. [D][ ] return book (by: June 6th)
+>>> 3. [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+>>> 4. [T][X] join sports club
+>>> 5. [T][ ] borrow book
+----------------
+>>> I've added this task:
+>>>   [D][ ] return book (by: Sunday)
+>>> You have 6 tasks in the list.
+----------------
+>>> I've added this task:
+>>>   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>>> You have 7 tasks in the list.
+----------------
+>>> I've marked it as not done yet. Get to work!
+>>>   [T][ ] join sports club
+----------------
+>>> You have 7 tasks in the list. What are you waiting for?
+----------------
+>>> 1. [T][X] read book
+>>> 2. [D][ ] return book (by: June 6th)
+>>> 3. [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+>>> 4. [T][ ] join sports club
+>>> 5. [T][ ] borrow book
+>>> 6. [D][ ] return book (by: Sunday)
+>>> 7. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+----------------
+>>> Goodbye!
+----------------

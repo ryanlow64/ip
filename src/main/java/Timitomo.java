@@ -34,8 +34,8 @@ public class Timitomo {
             print("Nothing to do in task list. Stop slacking off!");
             return;
         }
-        System.out.printf("You have %d %s in the list. What are you waiting for?%n",
-                taskCount, taskCount == 1 ? "task" : "tasks");
+        print(String.format("You have %d %s in the list. What are you waiting for?%n",
+                taskCount, taskCount == 1 ? "task" : "tasks"));
         for (int i = 0; i < taskCount; i++) {
             System.out.printf(">>> %d. %s%n", i+1, tasks[i]);
         }
@@ -47,7 +47,7 @@ public class Timitomo {
             throw new IllegalArgumentException("Invalid task number!");
         }
         tasks[index].markAsDone();
-        print(String.format("Nice! I've marked it as done.%n  %s", tasks[index].toString()));
+        print(String.format("Nice! I've marked it as done:%n  %s", tasks[index].toString()));
     }
 
     private void unmarkTask(int index) throws IllegalArgumentException {
