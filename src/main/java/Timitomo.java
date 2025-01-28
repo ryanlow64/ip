@@ -1,13 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Timitomo {
-    private Task[] tasks;
-    private int taskCount;
-    private static final int MAX_TASKS = 100;
+    private ArrayList<Task> tasks;
 
     public Timitomo() {
-        tasks = new Task[MAX_TASKS];
-        taskCount = 0;
+        tasks = new ArrayList<>();
     }
 
     private void greet() {
@@ -19,41 +17,37 @@ public class Timitomo {
     }
 
     private void addTask(Task task) throws TimitomoException {
-        if (taskCount >= MAX_TASKS) {
-            throw new TimitomoException("Task overflow error! Focus on the current tasks first!");
-        }
-        tasks[taskCount] = task;
-        taskCount++;
+        tasks.add(task);
         print(String.format("I've added this task:%n  %s%nYou have %d %s in the list.",
-                task.toString(), taskCount, taskCount == 1 ? "task" : "tasks"));
+                task.toString(), tasks.size(), tasks.size() == 1 ? "task" : "tasks"));
     }
 
     private void printTasks() throws TimitomoException {
-        if (taskCount == 0) {
+        if (tasks.isEmpty()) {
             throw new TimitomoException("Nothing to do in task list. Stop slacking off!");
         }
         print(String.format("You have %d %s in the list. What are you waiting for?%n",
-                taskCount, taskCount == 1 ? "task" : "tasks"));
-        for (int i = 0; i < taskCount; i++) {
-            System.out.printf(">>> %d. %s%n", i+1, tasks[i]);
+                tasks.size(), tasks.size() == 1 ? "task" : "tasks"));
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.printf(">>> %d. %s%n", i + 1, tasks.get(i));
         }
         System.out.println("----------------");
     }
 
     private void markTask(int index) throws IllegalArgumentException {
-        if (index < 0 || index >= taskCount) {
+        if (index < 0 || index >= tasks.size()) {
             throw new IllegalArgumentException("Invalid task number!");
         }
-        tasks[index].markAsDone();
-        print(String.format("Nice! I've marked it as done:%n  %s", tasks[index].toString()));
+        tasks.get(index).markAsDone();
+        print(String.format("Nice! I've marked it as done:%n  %s", tasks.get(index).toString()));
     }
 
     private void unmarkTask(int index) throws IllegalArgumentException {
-        if (index < 0 || index >= taskCount) {
+        if (index < 0 || index >= tasks.size()) {
             throw new IllegalArgumentException("Invalid task number!");
         }
-        tasks[index].markAsNotDone();
-        print(String.format("I've marked it as not done yet. Get to work!%n  %s", tasks[index].toString()));
+        tasks.get(index).markAsNotDone();
+        print(String.format("I've marked it as not done yet. Get to work!%n  %s", tasks.get(index).toString()));
     }
 
     private void handleIO() {
