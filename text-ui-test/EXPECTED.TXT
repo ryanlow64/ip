@@ -2,61 +2,63 @@
 >>> What can I do for you?
 ----------------
 >>> I've added this task:
->>>   [T][ ] read book
+>>>     [T][ ] read book
 >>> You have 1 task in the list.
 ----------------
 >>> I've added this task:
->>>   [D][ ] return book (by: June 6th)
+>>>     [D][ ] return book (by: June 6th)
 >>> You have 2 tasks in the list.
 ----------------
 >>> I've added this task:
->>>   [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+>>>     [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
 >>> You have 3 tasks in the list.
 ----------------
 >>> I've added this task:
->>>   [T][ ] join sports club
+>>>     [T][ ] join sports club
 >>> You have 4 tasks in the list.
 ----------------
->>> You have 4 tasks in the list. What are you waiting for?
-----------------
->>> 1. [T][ ] read book
->>> 2. [D][ ] return book (by: June 6th)
->>> 3. [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
->>> 4. [T][ ] join sports club
-----------------
 >>> Nice! I've marked it as done:
->>>   [T][X] join sports club
+>>>     [T][X] join sports club
 ----------------
 >>> You have 4 tasks in the list. What are you waiting for?
-----------------
 >>> 1. [T][ ] read book
 >>> 2. [D][ ] return book (by: June 6th)
 >>> 3. [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
 >>> 4. [T][X] join sports club
 ----------------
 >>> I've added this task:
->>>   [D][ ] return book (by: Sunday)
+>>>     [D][ ] return book (by: Sunday)
 >>> You have 5 tasks in the list.
 ----------------
 >>> I've added this task:
->>>   [E][ ] project meeting (from: Mon 2pm to: 4pm)
+>>>     [E][ ] project meeting (from: Mon 2pm to: 4pm)
 >>> You have 6 tasks in the list.
 ----------------
 >>> I've marked it as not done yet. Get to work!
->>>   [T][ ] join sports club
+>>>     [T][ ] join sports club
 ----------------
 >>> Specify task number to mark as done.
 ----------------
 >>> You don't need anything after "list". Enter "list" to see all your tasks!
 ----------------
 >>> You have 6 tasks in the list. What are you waiting for?
-----------------
 >>> 1. [T][ ] read book
 >>> 2. [D][ ] return book (by: June 6th)
 >>> 3. [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
 >>> 4. [T][ ] join sports club
 >>> 5. [D][ ] return book (by: Sunday)
 >>> 6. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+----------------
+>>> Alright, I've deleted this task:
+>>>     [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+>>> You have 5 tasks in the list.
+----------------
+>>> You have 5 tasks in the list. What are you waiting for?
+>>> 1. [T][ ] read book
+>>> 2. [D][ ] return book (by: June 6th)
+>>> 3. [T][ ] join sports club
+>>> 4. [D][ ] return book (by: Sunday)
+>>> 5. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ----------------
 >>> Goodbye!
 ----------------

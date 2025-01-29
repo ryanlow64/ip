@@ -18,7 +18,16 @@ public class Timitomo {
 
     private void addTask(Task task) throws TimitomoException {
         tasks.add(task);
-        print(String.format("I've added this task:%n  %s%nYou have %d %s in the list.",
+        print(String.format("I've added this task:%n    %s%nYou have %d %s in the list.",
+                task.toString(), tasks.size(), tasks.size() == 1 ? "task" : "tasks"));
+    }
+
+    private void deleteTask(int index) throws IllegalArgumentException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new IllegalArgumentException("Invalid task number!");
+        }
+        Task task = tasks.remove(index);
+        print(String.format("Alright, I've deleted this task:%n    %s%nYou have %d %s in the list.",
                 task.toString(), tasks.size(), tasks.size() == 1 ? "task" : "tasks"));
     }
 
@@ -26,8 +35,8 @@ public class Timitomo {
         if (tasks.isEmpty()) {
             throw new TimitomoException("Nothing to do in task list. Stop slacking off!");
         }
-        print(String.format("You have %d %s in the list. What are you waiting for?%n",
-                tasks.size(), tasks.size() == 1 ? "task" : "tasks"));
+        System.out.printf(">>> You have %d %s in the list. What are you waiting for?%n",
+                tasks.size(), tasks.size() == 1 ? "task" : "tasks");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.printf(">>> %d. %s%n", i + 1, tasks.get(i));
         }
@@ -39,7 +48,7 @@ public class Timitomo {
             throw new IllegalArgumentException("Invalid task number!");
         }
         tasks.get(index).markAsDone();
-        print(String.format("Nice! I've marked it as done:%n  %s", tasks.get(index).toString()));
+        print(String.format("Nice! I've marked it as done:%n    %s", tasks.get(index).toString()));
     }
 
     private void unmarkTask(int index) throws IllegalArgumentException {
@@ -47,7 +56,7 @@ public class Timitomo {
             throw new IllegalArgumentException("Invalid task number!");
         }
         tasks.get(index).markAsNotDone();
-        print(String.format("I've marked it as not done yet. Get to work!%n  %s", tasks.get(index).toString()));
+        print(String.format("I've marked it as not done yet. Get to work!%n    %s", tasks.get(index).toString()));
     }
 
     private void handleIO() {
@@ -128,6 +137,14 @@ public class Timitomo {
                         addTask(new Event(description, start, end));
                     } catch (ArrayIndexOutOfBoundsException e) {
                         print("I didn't quite catch that. Use: \"event <description> /from <start> /to <end>\".");
+                    }
+                    break;
+                case "delete":
+                    try {
+                        int index = Integer.parseInt(input[1]) - 1;
+                        deleteTask(index);
+                    } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+                        print("Specify task number to delete.");
                     }
                     break;
                 default:
