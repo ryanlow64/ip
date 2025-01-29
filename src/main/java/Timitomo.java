@@ -16,7 +16,7 @@ public class Timitomo {
         print("Goodbye!");
     }
 
-    private void addTask(Task task) throws TimitomoException {
+    private void addTask(Task task) {
         tasks.add(task);
         print(String.format("I've added this task:%n    %s%nYou have %d %s in the list.",
                 task.toString(), tasks.size(), tasks.size() == 1 ? "task" : "tasks"));
@@ -62,13 +62,12 @@ public class Timitomo {
     private void handleIO() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            String line = scanner.nextLine().trim();
-            String[] input = line.split(" ", 2);
             try {
-                switch (input[0]) {
-                case "":
-                    break;
-                case "bye":
+                String line = scanner.nextLine().trim();
+                String[] input = line.split(" ", 2);
+                ActionType action = ActionType.getAction(input[0]);
+                switch (action) {
+                case BYE:
                     if (input.length > 1) {
                         throw new TimitomoException("You don't need anything after \"bye\". " +
                                 "Enter \"bye\" when you want to leave!");
@@ -76,7 +75,7 @@ public class Timitomo {
                     exit();
                     scanner.close();
                     return;
-                case "list":
+                case LIST:
                     try {
                         if (input.length > 1) {
                             throw new TimitomoException("You don't need anything after \"list\". " +
@@ -87,7 +86,7 @@ public class Timitomo {
                         print(e.getMessage());
                     }
                     break;
-                case "mark":
+                case MARK:
                     try {
                         int index = Integer.parseInt(input[1]) - 1;
                         markTask(index);
@@ -95,7 +94,7 @@ public class Timitomo {
                         print("Specify task number to mark as done.");
                     }
                     break;
-                case "unmark":
+                case UNMARK:
                     try {
                         int index = Integer.parseInt(input[1]) - 1;
                         unmarkTask(index);
@@ -103,7 +102,7 @@ public class Timitomo {
                         print("Specify task number to mark as not done.");
                     }
                     break;
-                case "todo":
+                case TODO:
                     try {
                         String description = input[1];
                         addTask(new ToDo(description));
@@ -111,7 +110,7 @@ public class Timitomo {
                         print("Missing description. What do you want to do?");
                     }
                     break;
-                case "deadline":
+                case DEADLINE:
                     try {
                         String[] args = input[1].split(" /by ", 2);
                         String description = args[0].trim();
@@ -124,7 +123,7 @@ public class Timitomo {
                         print("I didn't quite catch that. Use: \"deadline <description> /by <due date>\".");
                     }
                     break;
-                case "event":
+                case EVENT:
                     try {
                         String[] args = input[1].split(" /from ", 2);
                         String[] times = args[1].split(" /to ", 2);
@@ -139,7 +138,7 @@ public class Timitomo {
                         print("I didn't quite catch that. Use: \"event <description> /from <start> /to <end>\".");
                     }
                     break;
-                case "delete":
+                case DELETE:
                     try {
                         int index = Integer.parseInt(input[1]) - 1;
                         deleteTask(index);
