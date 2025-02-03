@@ -4,7 +4,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String serializeTask(Task task) {
-        return String.format("%s | %d | %s", TaskType.TODO, super.isDone ? 1 : 0, super.description);
+    public String serializeTask() {
+        return String.format("%s | %d | %s", super.type, super.isDone ? 1 : 0, super.description);
     }
 }

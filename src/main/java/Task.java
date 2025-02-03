@@ -21,13 +21,18 @@ public abstract class Task {
         isDone = false;
     }
 
-    public abstract String serializeTask(Task task);
+    public abstract String serializeTask();
 
     public static Task deserializeTask(String line) throws TimitomoException {
         try {
             String[] args = line.split(" \\| ");
-            TaskType type = TaskType.fromId(args[0]);
-            boolean isDone = args[1].equals("1");
+            TaskType type = TaskType.valueOf(args[0]);
+            boolean isDone;
+            switch (args[1]) {
+                case "0" -> isDone = false;
+                case "1" -> isDone = true;
+                default -> throw new TimitomoException("Error: corrupted task status.");
+            }
             return type.deserializeTask(args, isDone);
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             throw new TimitomoException("Error: corrupted text.");

@@ -7,8 +7,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String serializeTask(Task task) {
-        return String.format("%s | %d | %s | %s", TaskType.DEADLINE, super.isDone ? 1 : 0, super.description, by);
+    public String serializeTask() {
+        return String.format("%s | %d | %s | %s", super.type, super.isDone ? 1 : 0, super.description, by);
     }
 
     @Override

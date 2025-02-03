@@ -2,11 +2,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Timitomo {
-    private Storage storage;
     private ArrayList<Task> tasks;
 
     public Timitomo() {
-        tasks = new ArrayList<>();
+        try {
+            tasks = Storage.loadTasks();
+        } catch (TimitomoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void greet() {
@@ -91,6 +94,7 @@ public class Timitomo {
                     try {
                         int index = Integer.parseInt(input[1]) - 1;
                         markTask(index);
+                        Storage.saveTasks(tasks);
                     } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                         print("Specify task number to mark as done.");
                     }
@@ -99,6 +103,7 @@ public class Timitomo {
                     try {
                         int index = Integer.parseInt(input[1]) - 1;
                         unmarkTask(index);
+                        Storage.saveTasks(tasks);
                     } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                         print("Specify task number to mark as not done.");
                     }
@@ -107,6 +112,7 @@ public class Timitomo {
                     try {
                         String description = input[1];
                         addTask(new ToDo(description, false));
+                        Storage.saveTasks(tasks);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         print("Missing description. What do you want to do?");
                     }
@@ -120,6 +126,7 @@ public class Timitomo {
                             throw new ArrayIndexOutOfBoundsException();
                         }
                         addTask(new Deadline(description, false, by));
+                        Storage.saveTasks(tasks);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         print("I didn't quite catch that. Use: \"deadline <description> /by <due date>\".");
                     }
@@ -135,6 +142,7 @@ public class Timitomo {
                             throw new ArrayIndexOutOfBoundsException();
                         }
                         addTask(new Event(description, false, start, end));
+                        Storage.saveTasks(tasks);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         print("I didn't quite catch that. Use: \"event <description> /from <start> /to <end>\".");
                     }
@@ -143,6 +151,7 @@ public class Timitomo {
                     try {
                         int index = Integer.parseInt(input[1]) - 1;
                         deleteTask(index);
+                        Storage.saveTasks(tasks);
                     } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                         print("Specify task number to delete.");
                     }

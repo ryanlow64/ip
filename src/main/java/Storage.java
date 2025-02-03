@@ -6,9 +6,14 @@ public class Storage {
     public static void saveTasks(ArrayList<Task> tasks) throws TimitomoException {
         try {
             File file = new File(FILE_PATH);
+            File directory = file.getParentFile();
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
             FileWriter writer = new FileWriter(file);
             for (Task task : tasks) {
-                writer.write(task + System.lineSeparator());
+                writer.write(task.serializeTask() + System.lineSeparator());
             }
             writer.close();
         } catch (IOException e) {
@@ -24,13 +29,15 @@ public class Storage {
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
+            int lineNumber = 1;
             while (line != null) {
                 try {
                     tasks.add(Task.deserializeTask(line));
                 } catch (TimitomoException e) {
-                    System.err.println(e.getMessage());
+                    System.err.printf("%s [line %d]%n", e.getMessage(), lineNumber);
                 }
                 line = reader.readLine();
+                lineNumber++;
             }
         } catch (IOException e) {
             throw new TimitomoException("Error loading tasks: " + e.getMessage());

@@ -9,8 +9,8 @@ public class Event extends Task {
     }
 
     @Override
-    public String serializeTask(Task task) {
-        return String.format("%s | %d | %s | %s | %s", TaskType.EVENT, super.isDone ? 1 : 0, super.description, start, end);
+    public String serializeTask() {
+        return String.format("%s | %d | %s | %s | %s", super.type, super.isDone ? 1 : 0, super.description, start, end);
     }
 
     @Override
