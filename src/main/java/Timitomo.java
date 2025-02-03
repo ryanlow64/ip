@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Timitomo {
+    private Storage storage;
     private ArrayList<Task> tasks;
 
     public Timitomo() {
@@ -105,7 +106,7 @@ public class Timitomo {
                 case TODO:
                     try {
                         String description = input[1];
-                        addTask(new ToDo(description));
+                        addTask(new ToDo(description, false));
                     } catch (ArrayIndexOutOfBoundsException e) {
                         print("Missing description. What do you want to do?");
                     }
@@ -118,7 +119,7 @@ public class Timitomo {
                         if (description.isEmpty() || by.isEmpty()) {
                             throw new ArrayIndexOutOfBoundsException();
                         }
-                        addTask(new Deadline(description, by));
+                        addTask(new Deadline(description, false, by));
                     } catch (ArrayIndexOutOfBoundsException e) {
                         print("I didn't quite catch that. Use: \"deadline <description> /by <due date>\".");
                     }
@@ -133,7 +134,7 @@ public class Timitomo {
                         if (description.isEmpty() || start.isEmpty() || end.isEmpty()) {
                             throw new ArrayIndexOutOfBoundsException();
                         }
-                        addTask(new Event(description, start, end));
+                        addTask(new Event(description, false, start, end));
                     } catch (ArrayIndexOutOfBoundsException e) {
                         print("I didn't quite catch that. Use: \"event <description> /from <start> /to <end>\".");
                     }
