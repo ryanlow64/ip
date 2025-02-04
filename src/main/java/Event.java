@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     protected LocalDateTime start;
@@ -7,12 +6,10 @@ public class Event extends Task {
 
     public Event(String description, boolean isDone, String start, String end) throws TimitomoException {
         super(description, isDone, TaskType.EVENT);
-        try {
-            this.start = LocalDateTime.parse(start, FORMAT_TEXT);
-            this.end = LocalDateTime.parse(end, FORMAT_TEXT);
-        } catch (DateTimeParseException e) {
-            throw new TimitomoException(String.format(
-                    "%s%nUse dd-mm-yyyy hh:mm (e.g. 20-04-2025 1744)", e.getMessage()));
+        this.start = parseDateTime(start, "0000");
+        this.end = parseDateTime(end, "2359");
+        if (this.end.isBefore(this.start)) {
+            throw new TimitomoException("End time cannot be before start time!");
         }
     }
 

@@ -27,11 +27,14 @@
 >>> 4. [T][X] join sports club
 ----------------
 >>> I've added this task:
->>>     [D][ ] return book (by: 04 Jun 2025 2359)
+>>>     [D][ ] return book 2 (by: 04 Jun 2025 2359)
 >>> You have 5 tasks in the list.
 ----------------
->>> Text '24 Nov 28 1400' could not be parsed at index 2
->>> Use dd-mm-yyyy hh:mm (e.g. 20-04-2025 1744)
+>>> I've added this task:
+>>>     [E][ ] project meeting 2 (from: 25 Nov 2028 0000 to: 25 Nov 2028 2359)
+>>> You have 6 tasks in the list.
+----------------
+>>> End time cannot be before start time!
 ----------------
 >>> I've marked it as not done yet. Get to work!
 >>>     [T][ ] join sports club
@@ -40,22 +43,16 @@
 ----------------
 >>> You don't need anything after "list". Enter "list" to see all your tasks!
 ----------------
+>>> Alright, I've deleted this task:
+>>>     [D][ ] return book 2 (by: 04 Jun 2025 2359)
+>>> You have 5 tasks in the list.
+----------------
 >>> You have 5 tasks in the list. What are you waiting for?
 >>> 1. [T][ ] read book
 >>> 2. [D][ ] return book (by: 06 Jun 2025 2359)
 >>> 3. [E][ ] project meeting (from: 06 Aug 2025 1400 to: 06 Aug 2025 1600)
 >>> 4. [T][ ] join sports club
->>> 5. [D][ ] return book (by: 04 Jun 2025 2359)
-----------------
->>> Alright, I've deleted this task:
->>>     [D][ ] return book (by: 06 Jun 2025 2359)
->>> You have 4 tasks in the list.
-----------------
->>> You have 4 tasks in the list. What are you waiting for?
->>> 1. [T][ ] read book
->>> 2. [E][ ] project meeting (from: 06 Aug 2025 1400 to: 06 Aug 2025 1600)
->>> 3. [T][ ] join sports club
->>> 4. [D][ ] return book (by: 04 Jun 2025 2359)
+>>> 5. [E][ ] project meeting 2 (from: 25 Nov 2028 0000 to: 25 Nov 2028 2359)
 ----------------
 >>> Goodbye!
 ----------------

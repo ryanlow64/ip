@@ -1,4 +1,6 @@
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 public abstract class Task {
@@ -14,6 +16,19 @@ public abstract class Task {
         this.description = description;
         this.isDone = isDone;
         this.type = type;
+    }
+
+    protected static LocalDateTime parseDateTime(String dateTime, String defaultTime) throws TimitomoException {
+        try {
+            return LocalDateTime.parse(dateTime, FORMAT_TEXT);
+        } catch (DateTimeParseException e1) {
+            try {
+                return LocalDateTime.parse(dateTime + " " + defaultTime, FORMAT_TEXT);
+            } catch (DateTimeParseException e2) {
+                throw new TimitomoException(String.format(
+                        "%s%nUse dd-mm-yyyy OR dd-mm-yyyy hhmm (e.g. 20-04-2025 1744)", e2.getMessage()));
+            }
+        }
     }
 
     public String getStatusIcon() {
