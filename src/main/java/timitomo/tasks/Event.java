@@ -1,3 +1,8 @@
+package timitomo.tasks;
+
+import timitomo.exceptions.TimitomoException;
+import timitomo.enums.TaskType;
+
 import java.time.LocalDateTime;
 
 public class Event extends Task {

@@ -1,3 +1,8 @@
+package timitomo.tasks;
+
+import timitomo.enums.TaskType;
+import timitomo.exceptions.TimitomoException;
+
 import java.time.LocalDateTime;
 
 public class Deadline extends Task {

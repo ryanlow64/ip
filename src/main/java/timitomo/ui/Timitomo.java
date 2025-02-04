@@ -1,3 +1,13 @@
+package timitomo.ui;
+
+import timitomo.exceptions.TimitomoException;
+import timitomo.enums.CommandType;
+import timitomo.storage.Storage;
+import timitomo.tasks.Deadline;
+import timitomo.tasks.Event;
+import timitomo.tasks.Task;
+import timitomo.tasks.ToDo;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,7 +79,7 @@ public class Timitomo {
             try {
                 String line = scanner.nextLine().trim();
                 String[] input = line.split(" ", 2);
-                ActionType action = ActionType.getAction(input[0]);
+                CommandType action = CommandType.getAction(input[0]);
                 switch (action) {
                 case BYE:
                     if (input.length > 1) {

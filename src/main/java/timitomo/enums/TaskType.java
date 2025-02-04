@@ -1,3 +1,11 @@
+package timitomo.enums;
+
+import timitomo.exceptions.TimitomoException;
+import timitomo.tasks.Deadline;
+import timitomo.tasks.Event;
+import timitomo.tasks.Task;
+import timitomo.tasks.ToDo;
+
 import java.util.HashMap;
 
 public enum TaskType {

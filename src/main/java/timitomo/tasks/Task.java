@@ -1,3 +1,8 @@
+package timitomo.tasks;
+
+import timitomo.exceptions.TimitomoException;
+import timitomo.enums.TaskType;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,7 +17,7 @@ public abstract class Task {
     protected boolean isDone;
     protected TaskType type;
 
-    public Task(String description, boolean isDone, TaskType type) {
+    protected Task(String description, boolean isDone, TaskType type) {
         this.description = description;
         this.isDone = isDone;
         this.type = type;
