@@ -1,18 +1,20 @@
-public class Deadline extends Task {
-    protected String by;
+import java.time.LocalDateTime;
 
-    public Deadline(String description, boolean isDone, String by) {
+public class Deadline extends Task {
+    protected LocalDateTime by;
+
+    public Deadline(String description, boolean isDone, String by) throws TimitomoException {
         super(description, isDone, TaskType.DEADLINE);
-        this.by = by;
+        this.by = parseDateTime(by, "2359");
     }
 
     @Override
     public String serializeTask() {
-        return String.format("%s | %d | %s | %s", super.type, super.isDone ? 1 : 0, super.description, by);
+        return String.format("%s | %s", super.serializeTask(), by.format(FORMAT_TEXT));
     }
 
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), by);
+        return String.format("%s (by: %s)", super.toString(), by.format(FORMAT_PRINT));
     }
 }

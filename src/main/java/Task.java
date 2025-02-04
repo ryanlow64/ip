@@ -1,4 +1,13 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Locale;
+
 public abstract class Task {
+    protected static final DateTimeFormatter FORMAT_TEXT = DateTimeFormatter.ofPattern(
+            "dd-MM-yyyy HHmm", Locale.ENGLISH);
+    protected static final DateTimeFormatter FORMAT_PRINT = DateTimeFormatter.ofPattern(
+            "dd MMM yyyy HHmm", Locale.ENGLISH);
     protected String description;
     protected boolean isDone;
     protected TaskType type;
@@ -7,6 +16,19 @@ public abstract class Task {
         this.description = description;
         this.isDone = isDone;
         this.type = type;
+    }
+
+    protected static LocalDateTime parseDateTime(String dateTime, String defaultTime) throws TimitomoException {
+        try {
+            return LocalDateTime.parse(dateTime, FORMAT_TEXT);
+        } catch (DateTimeParseException e1) {
+            try {
+                return LocalDateTime.parse(dateTime + " " + defaultTime, FORMAT_TEXT);
+            } catch (DateTimeParseException e2) {
+                throw new TimitomoException(String.format(
+                        "%s%nUse dd-mm-yyyy OR dd-mm-yyyy hhmm (e.g. 20-04-2025 1744)", e2.getMessage()));
+            }
+        }
     }
 
     public String getStatusIcon() {
@@ -21,7 +43,9 @@ public abstract class Task {
         isDone = false;
     }
 
-    public abstract String serializeTask();
+    public String serializeTask() {
+        return String.format("%s | %d | %s", type, isDone ? 1 : 0, description);
+    }
 
     public static Task deserializeTask(String line) throws TimitomoException {
         try {
