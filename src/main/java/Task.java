@@ -1,4 +1,11 @@
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public abstract class Task {
+    protected static final DateTimeFormatter FORMAT_TEXT = DateTimeFormatter.ofPattern(
+            "dd-MM-yyyy HHmm", Locale.ENGLISH);
+    protected static final DateTimeFormatter FORMAT_PRINT = DateTimeFormatter.ofPattern(
+            "dd MMM yyyy HHmm", Locale.ENGLISH);
     protected String description;
     protected boolean isDone;
     protected TaskType type;
@@ -21,7 +28,9 @@ public abstract class Task {
         isDone = false;
     }
 
-    public abstract String serializeTask();
+    public String serializeTask() {
+        return String.format("%s | %d | %s", type, isDone ? 1 : 0, description);
+    }
 
     public static Task deserializeTask(String line) throws TimitomoException {
         try {
