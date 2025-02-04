@@ -2,6 +2,7 @@ package timitomo.storage;
 
 import timitomo.exceptions.TimitomoException;
 import timitomo.tasks.Task;
+import timitomo.tasks.TaskList;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,17 +12,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-    private static final String FILE_PATH = "./data/timitomo.txt";
-    public static void saveTasks(ArrayList<Task> tasks) throws TimitomoException {
+    private final String filePath;
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+    public void saveTasks(TaskList tasks) throws TimitomoException {
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(filePath);
             File directory = file.getParentFile();
             if (!directory.exists()) {
                 directory.mkdirs();
             }
 
             FileWriter writer = new FileWriter(file);
-            for (Task task : tasks) {
+            for (Task task : tasks.getAllTasks()) {
                 writer.write(task.serializeTask() + System.lineSeparator());
             }
             writer.close();
@@ -30,9 +35,9 @@ public class Storage {
         }
     }
 
-    public static ArrayList<Task> loadTasks() throws TimitomoException {
+    public ArrayList<Task> loadTasks() throws TimitomoException {
         ArrayList<Task> tasks = new ArrayList<>();
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         if (!file.exists()) {
             return tasks;
         }
