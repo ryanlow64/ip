@@ -13,9 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EventCommandTest {
-
     @Test
-    void executeTest() throws TimitomoException {
+    void executeTest() {
         TaskList tasks = new TaskList();
         Ui ui = new UiStub();
         Storage storage = new StorageStub();
