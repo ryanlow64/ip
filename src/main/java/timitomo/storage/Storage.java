@@ -17,6 +17,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+
     public void saveTasks(TaskList tasks) throws TimitomoException {
         try {
             File file = new File(filePath);
