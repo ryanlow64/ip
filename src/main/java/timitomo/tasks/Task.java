@@ -57,7 +57,7 @@ public abstract class Task {
     /**
      * Returns the status icon of the task.
      *
-     * @return "X" if the task is done, a whitespace otherwise.
+     * @return An "X" if the task is done, a whitespace character otherwise.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
@@ -98,8 +98,8 @@ public abstract class Task {
             String[] args = line.split(" \\| ");
             TaskType type = TaskType.valueOf(args[0]);
             boolean isDone = switch (args[1]) {
-                case "0" -> isDone = false;
-                case "1" -> isDone = true;
+                case "0" -> false;
+                case "1" -> true;
                 default -> throw new TimitomoException("Error: corrupted task status.");
             };
             return type.deserializeTask(args, isDone);

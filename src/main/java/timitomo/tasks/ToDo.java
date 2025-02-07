@@ -1,7 +1,6 @@
 package timitomo.tasks;
 
 import timitomo.enums.TaskType;
-import timitomo.exceptions.TimitomoException;
 
 /**
  * Represents a basic task.
