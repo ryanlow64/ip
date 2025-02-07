@@ -71,7 +71,8 @@ public class Parser {
                 }
                 return new DeadlineCommand(description, by);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new TimitomoException("Missing details. Use: \"deadline <description> /by <due date>\".");
+                throw new TimitomoException(
+                        "Missing details. Use: \"deadline <description> /by <due date>\".");
             }
         case EVENT:
             try {
@@ -85,7 +86,8 @@ public class Parser {
                 }
                 return new EventCommand(description, start, end);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new TimitomoException("Missing details. Use: \"event <description> /from <start> /to <end>\".");
+                throw new TimitomoException(
+                        "Missing details. Use: \"event <description> /from <start> /to <end>\".");
             }
         case DELETE:
             try {

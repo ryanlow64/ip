@@ -58,10 +58,13 @@ class ParserTest {
 
     @Test
     void parseEventCommandTest() throws TimitomoException {
-        assertInstanceOf(EventCommand.class, Parser.parse("event CS2103T meeting /from 13-01-2025 /to 30-04-2025"));
+        assertInstanceOf(EventCommand.class,
+                Parser.parse("event CS2103T meeting /from 13-01-2025 /to 30-04-2025"));
         assertThrows(TimitomoException.class, () -> Parser.parse("event CS2103T meeting"));
-        assertThrows(TimitomoException.class, () -> Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025"));
-        assertThrows(TimitomoException.class, () -> Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025 lalala"));
+        assertThrows(TimitomoException.class,
+                () -> Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025"));
+        assertThrows(TimitomoException.class,
+                () -> Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025 lalala"));
         assertInstanceOf(EventCommand.class, Parser.parse("event " +
                 "aquickbrownfoxjumpsoverthelazydogaquickbrownfoxjumpsoverthelazydogthebrownfoxisnowslow /from 13-01-2025 /to 30-04-2025"));
     }
@@ -76,6 +79,7 @@ class ParserTest {
     @Test
     void parseInvalidCommandTest() {
         assertThrows(TimitomoException.class, () -> Parser.parse(""));
-        assertThrows(TimitomoException.class, () -> Parser.parse("aquickbrownfoxjumpsoverthelazydogaquickbrownfoxjumpsoverthelazydogthebrownfoxisnowslow"));
+        assertThrows(TimitomoException.class, () -> Parser.parse(
+                "aquickbrownfoxjumpsoverthelazydogaquickbrownfoxjumpsoverthelazydogthebrownfoxisnowslow"));
     }
 }
