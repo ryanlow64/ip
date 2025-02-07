@@ -4,6 +4,10 @@ import timitomo.exceptions.TimitomoException;
 import timitomo.tasks.Task;
 import timitomo.tasks.TaskList;
 
+/**
+ * A stub version of the {@code Ui} class for testing purposes.
+ * The methods are overridden to prevent any I/O operations to the console.
+ */
 public class UiStub extends Ui {
 
     public UiStub() {

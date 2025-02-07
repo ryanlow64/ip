@@ -11,13 +11,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Handles the saving and retrieval of tasks to and from a file.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs a new {@code Storage} object with the specified file path.
+     *
+     * @param filePath The path of the file storing the tasks.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the tasks in the specified {@code TaskList} to the file.
+     *
+     * @param tasks The {@code TaskList} containing the list of tasks to be saved.
+     * @throws TimitomoException If an error occurs when writing to the file.
+     */
     public void saveTasks(TaskList tasks) throws TimitomoException {
         try {
             File file = new File(filePath);
@@ -36,6 +50,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Retrieves the saved tasks from the file and returns them in an {@code ArrayList<Task>}.
+     *
+     * @return An {@code ArrayList<Task>} of {@code Task} objects saved in the file.
+     * @throws TimitomoException If an error occurs when reading from the file.
+     */
     public ArrayList<Task> loadTasks() throws TimitomoException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);

@@ -8,6 +8,9 @@ import timitomo.tasks.ToDo;
 
 import java.util.HashMap;
 
+/**
+ * Represents the types of tasks that can be created in the chatbot.
+ */
 public enum TaskType {
     TODO("T") {
         @Override

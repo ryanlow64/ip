@@ -12,7 +12,18 @@ import timitomo.commands.UnmarkCommand;
 import timitomo.enums.CommandType;
 import timitomo.exceptions.TimitomoException;
 
+/**
+ * Interprets user input and
+ * generates the corresponding {@code Command} objects.
+ */
 public class Parser {
+    /**
+     * Parses the user input string and builds the corresponding {@code Command} object.
+     *
+     * @param line The user input string.
+     * @return The {@code Command} object corresponding to the user input.
+     * @throws TimitomoException If the input format is invalid.
+     */
     public static Command parse(String line) throws TimitomoException {
         String[] input = line.split(" ", 2);
         CommandType action = CommandType.getAction(input[0]);
