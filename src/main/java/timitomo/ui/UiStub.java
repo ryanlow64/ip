@@ -2,7 +2,8 @@ package timitomo.ui;
 
 import timitomo.exceptions.TimitomoException;
 import timitomo.tasks.Task;
-import timitomo.tasks.TaskList;
+
+import java.util.ArrayList;
 
 /**
  * A stub version of the {@code Ui} class for testing purposes.
@@ -18,11 +19,10 @@ public class UiStub extends Ui {
     public void printText(String text) {}
 
     @Override
-    public void printListCommand(TaskList taskList) throws TimitomoException {
-        if (taskList.getAllTasks().isEmpty()) {
-            throw new TimitomoException("Nothing to do in task list. Stop slacking off!");
-        }
-    }
+    public void printFindCommand(ArrayList<Task> tasks) {}
+
+    @Override
+    public void printListCommand(ArrayList<Task> tasks) {}
 
     @Override
     public String readCommand() {

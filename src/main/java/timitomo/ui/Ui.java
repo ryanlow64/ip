@@ -33,19 +33,32 @@ public class Ui {
         System.out.println("----------------");
     }
 
-    /**
-     * Prints the list of tasks stored in the {@code TaskList} object.
-     *
-     * @param taskList The {@code TaskList} object containing the tasks.
-     * @throws TimitomoException If the task list is empty.
-     */
-    public void printListCommand(TaskList taskList) throws TimitomoException {
-        ArrayList<Task> tasks = taskList.getAllTasks();
+    public void printFindCommand(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
-            throw new TimitomoException("Nothing to do in task list. Stop slacking off!");
+            printText("No matching tasks found!");
+            return;
+        }
+        System.out.printf(">>> %d matching %s found in your list.%n",
+                tasks.size(), tasks.size() == 1 ? "task" : "tasks");
+        printTasks(tasks);
+    }
+
+    /**
+     * Prints the list of tasks stored in the {@code ArrayList} object.
+     *
+     * @param tasks The {@code ArrayList} object containing the tasks.
+     */
+    public void printListCommand(ArrayList<Task> tasks) {
+        if (tasks.isEmpty()) {
+            printText("Nothing to do in task list. Stop slacking off!");
+            return;
         }
         System.out.printf(">>> You have %d %s in the list. What are you waiting for?%n",
                 tasks.size(), tasks.size() == 1 ? "task" : "tasks");
+        printTasks(tasks);
+    }
+
+    private void printTasks(ArrayList<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.printf(">>> %d. %s%n", i + 1, tasks.get(i));
         }
