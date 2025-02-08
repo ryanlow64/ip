@@ -1,6 +1,5 @@
 package timitomo.ui;
 
-import timitomo.exceptions.TimitomoException;
 import timitomo.tasks.Task;
 
 import java.util.ArrayList;

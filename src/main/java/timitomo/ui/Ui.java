@@ -1,8 +1,6 @@
 package timitomo.ui;
 
-import timitomo.exceptions.TimitomoException;
 import timitomo.tasks.Task;
-import timitomo.tasks.TaskList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,6 +31,11 @@ public class Ui {
         System.out.println("----------------");
     }
 
+    /**
+     * Prints the list of tasks stored in the {@code ArrayList} object for the find command.
+     *
+     * @param tasks The {@code ArrayList} object containing the tasks.
+     */
     public void printFindCommand(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
             printText("No matching tasks found!");
@@ -44,7 +47,7 @@ public class Ui {
     }
 
     /**
-     * Prints the list of tasks stored in the {@code ArrayList} object.
+     * Prints the list of tasks stored in the {@code ArrayList} object for the list command.
      *
      * @param tasks The {@code ArrayList} object containing the tasks.
      */
