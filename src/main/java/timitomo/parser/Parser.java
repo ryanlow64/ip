@@ -5,6 +5,7 @@ import timitomo.commands.Command;
 import timitomo.commands.DeadlineCommand;
 import timitomo.commands.DeleteCommand;
 import timitomo.commands.EventCommand;
+import timitomo.commands.FindCommand;
 import timitomo.commands.ListCommand;
 import timitomo.commands.MarkCommand;
 import timitomo.commands.ToDoCommand;
@@ -46,6 +47,9 @@ public class Parser {
         case TODO:
             try {
                 String description = input[1].trim();
+                if (description.isEmpty()) {
+                    throw new ArrayIndexOutOfBoundsException();
+                }
                 return new ToDoCommand(description);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new TimitomoException("Missing description. What do you want to do?");
@@ -82,6 +86,16 @@ public class Parser {
                 return new DeleteCommand(index);
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 throw new TimitomoException("Specify task number to delete.");
+            }
+        case FIND:
+            try {
+                String keyword = input[1].trim();
+                if (keyword.isEmpty()) {
+                    throw new ArrayIndexOutOfBoundsException();
+                }
+                return new FindCommand(keyword);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new TimitomoException("Missing keyword. What do you want to find?");
             }
         default:
             throw new TimitomoException("I don't know what that means.");

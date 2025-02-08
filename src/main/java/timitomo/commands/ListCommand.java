@@ -8,6 +8,6 @@ import timitomo.ui.Ui;
 public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws TimitomoException {
-        ui.printListCommand(tasks);
+        ui.printListCommand(tasks.getAllTasks());
     }
 }

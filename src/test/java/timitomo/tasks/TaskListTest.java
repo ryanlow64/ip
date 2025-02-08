@@ -22,7 +22,7 @@ public class TaskListTest {
     }
 
     @Test
-    void addDeleteTaskTest() {
+    void testAddDeleteTask() {
         taskList.addTask(event1);
         taskList.addTask(event2);
         assertEquals(2, taskList.size());
@@ -33,7 +33,7 @@ public class TaskListTest {
     }
 
     @Test
-    void markUnmarkTaskTest() {
+    void testMarkUnmarkTask() {
         taskList.addTask(event1);
         taskList.addTask(event2);
         taskList.markTask(1);
@@ -45,8 +45,17 @@ public class TaskListTest {
     }
 
     @Test
-    void deleteTaskExceptionTest() {
+    void testDeleteTaskException() {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> taskList.deleteTask(0));
         assertEquals("Invalid task number!", e.getMessage());
+    }
+
+    @Test
+    void testFindTask() {
+        taskList.addTask(event1);
+        taskList.addTask(event2);
+        assertEquals(2, taskList.findTasks("t").size());
+        assertTrue(taskList.findTasks("artist").contains(event2));
+        assertTrue(taskList.findTasks("schwarzenegger").isEmpty());
     }
 }
