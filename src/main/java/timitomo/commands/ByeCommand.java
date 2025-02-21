@@ -9,9 +9,6 @@ import timitomo.tasks.TaskList;
 public class ByeCommand extends Command {
     /**
      * Executes the bye command, terminating the chatbot application.
-     *
-     * @param tasks The task list containing all the tasks.
-     * @param storage The storage handler saving the task list to the hard disk.
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {

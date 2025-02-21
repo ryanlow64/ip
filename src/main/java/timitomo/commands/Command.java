@@ -13,6 +13,7 @@ public abstract class Command {
      *
      * @param tasks The task list containing all the tasks.
      * @param storage The storage handler saving the task list to the hard disk.
+     * @return The response to the user.
      * @throws TimitomoException If an error occurs when executing the command.
      */
     public abstract String execute(TaskList tasks, Storage storage) throws TimitomoException;

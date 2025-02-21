@@ -27,10 +27,6 @@ public class DeadlineCommand extends Command {
 
     /**
      * Executes the deadline command, adding a deadline task to the task list.
-     *
-     * @param tasks The task list containing all the tasks.
-     * @param storage The storage handler saving the task list to the hard disk.
-     * @throws TimitomoException If an error occurs when executing the command.
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws TimitomoException {

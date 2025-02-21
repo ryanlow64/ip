@@ -1,8 +1,8 @@
 package timitomo.tasks;
 
-import timitomo.exceptions.TimitomoException;
-
 import java.util.ArrayList;
+
+import timitomo.exceptions.TimitomoException;
 
 /**
  * Represents a list of tasks.

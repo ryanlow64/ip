@@ -11,13 +11,11 @@ import timitomo.storage.Storage;
 import timitomo.tasks.TaskList;
 
 /**
- * The main class for the Timitomo chatbot with the entry point.
+ * The main logic class for the Timitomo chatbot.
  */
 public class Timitomo {
-
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
 
     /**
      * Constructs a {@code Timitomo} instance and initializes the storage, UI, and task list.
@@ -25,7 +23,6 @@ public class Timitomo {
      */
     public Timitomo(String filePath) {
         storage = new Storage(filePath);
-        ui = new Ui();
         try {
             tasks = new TaskList(storage.loadTasks());
         } catch (TimitomoException e) {
