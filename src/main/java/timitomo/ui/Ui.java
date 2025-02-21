@@ -1,9 +1,9 @@
 package timitomo.ui;
 
-import timitomo.tasks.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import timitomo.tasks.Task;
 
 /**
  * Manages user interaction with the Timitomo application.
@@ -90,10 +90,10 @@ public class Ui {
      * @param errorMsg The error message to be printed.
      */
     public void printError(String errorMsg) {
-        final String RED = "\u001B[31m";
-        final String RESET = "\u001B[0m";
+        final String red = "\u001B[31m";
+        final String reset = "\u001B[0m";
         for (String line : errorMsg.split(System.lineSeparator())) {
-            System.out.println(">>> " + RED + line + RESET);
+            System.out.println(">>> " + red + line + reset);
         }
         System.out.println("----------------");
     }

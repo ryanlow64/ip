@@ -1,6 +1,10 @@
 package timitomo.parser;
 
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import timitomo.commands.ByeCommand;
 import timitomo.commands.DeadlineCommand;
 import timitomo.commands.DeleteCommand;
@@ -11,9 +15,6 @@ import timitomo.commands.MarkCommand;
 import timitomo.commands.ToDoCommand;
 import timitomo.commands.UnmarkCommand;
 import timitomo.exceptions.TimitomoException;
-
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParserTest {
     @Test
@@ -62,12 +63,13 @@ class ParserTest {
         assertInstanceOf(EventCommand.class,
                 Parser.parse("event CS2103T meeting /from 13-01-2025 /to 30-04-2025"));
         assertThrows(TimitomoException.class, () -> Parser.parse("event CS2103T meeting"));
-        assertThrows(TimitomoException.class,
-                () -> Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025"));
-        assertThrows(TimitomoException.class,
-                () -> Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025 lalala"));
-        assertInstanceOf(EventCommand.class, Parser.parse("event " +
-                "aquickbrownfoxjumpsoverthelazydogaquickbrownfoxjumpsoverthelazydogthebrownfoxisnowslow /from 13-01-2025 /to 30-04-2025"));
+        assertThrows(TimitomoException.class, () ->
+                Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025"));
+        assertThrows(TimitomoException.class, () ->
+                Parser.parse("event CS2103T meeting /to 30-04-2025 /from 13-01-2025 lalala"));
+        assertInstanceOf(EventCommand.class, Parser.parse("event "
+                + "aquickbrownfoxjumpsoverthelazydogaquickbrownfoxjumpsoverthelazydogthebrownfoxisnowslow "
+                + "/from 13-01-2025 /to 30-04-2025"));
     }
 
     @Test

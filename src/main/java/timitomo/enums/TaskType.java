@@ -1,12 +1,12 @@
 package timitomo.enums;
 
+import java.util.HashMap;
+
 import timitomo.exceptions.TimitomoException;
 import timitomo.tasks.Deadline;
 import timitomo.tasks.Event;
 import timitomo.tasks.Task;
 import timitomo.tasks.ToDo;
-
-import java.util.HashMap;
 
 /**
  * Represents the types of tasks that can be created in the chatbot.
@@ -49,8 +49,8 @@ public enum TaskType {
         }
     };
 
-    private final String id;
     private static final HashMap<String, TaskType> dict = new HashMap<>();
+    private final String id;
 
     // Populates the lookup dictionary.
     static {
