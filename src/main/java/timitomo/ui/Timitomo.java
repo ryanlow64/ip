@@ -22,6 +22,7 @@ public class Timitomo {
      * @param filePath The file path to retrieve and store tasks.
      */
     public Timitomo(String filePath) {
+        assert filePath != null : "File path cannot be null";
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadTasks());
