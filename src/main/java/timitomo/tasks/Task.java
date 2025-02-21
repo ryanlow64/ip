@@ -42,6 +42,7 @@ public abstract class Task {
      * @throws TimitomoException If the input string format is invalid.
      */
     protected static LocalDateTime parseDateTime(String dateTime, String defaultTime) throws TimitomoException {
+        // TOFIX: illegal dates like 32nd Feb
         try {
             return LocalDateTime.parse(dateTime, FORMAT_TEXT);
         } catch (DateTimeParseException e1) {

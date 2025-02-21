@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,26 +29,34 @@ public class TaskListTest {
         taskList.addTask(event2);
         assertEquals(2, taskList.size());
         assertEquals(event2, taskList.getTask(1));
-        Task temp = taskList.deleteTask(0);
-        assertEquals(event1, temp);
-        assertEquals(1, taskList.size());
+        try {
+            Task temp = taskList.deleteTask(0);
+            assertEquals(event1, temp);
+            assertEquals(1, taskList.size());
+        } catch (TimitomoException e) {
+            fail();
+        }
     }
 
     @Test
     void testMarkUnmarkTask() {
-        taskList.addTask(event1);
-        taskList.addTask(event2);
-        taskList.markTask(1);
-        assertTrue(event2.isDone);
-        assertFalse(event1.isDone);
-        taskList.unmarkTask(1);
-        assertFalse(event2.isDone);
-        assertThrows(IllegalArgumentException.class, () -> taskList.markTask(37));
+        try {
+            taskList.addTask(event1);
+            taskList.addTask(event2);
+            taskList.markTask(1);
+            assertTrue(event2.isDone);
+            assertFalse(event1.isDone);
+            taskList.unmarkTask(1);
+            assertFalse(event2.isDone);
+            assertThrows(TimitomoException.class, () -> taskList.markTask(37));
+        } catch (TimitomoException e) {
+            fail();
+        }
     }
 
     @Test
     void testDeleteTaskException() {
-        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> taskList.deleteTask(0));
+        TimitomoException e = assertThrows(TimitomoException.class, () -> taskList.deleteTask(0));
         assertEquals("Invalid task number!", e.getMessage());
     }
 

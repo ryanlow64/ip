@@ -1,7 +1,6 @@
 package timitomo.ui;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import timitomo.tasks.Task;
 
@@ -9,41 +8,17 @@ import timitomo.tasks.Task;
  * Manages user interaction with the Timitomo application.
  */
 public class Ui {
-    private final Scanner scanner;
-
-    /**
-     * Constructs a {@code Ui} instance and initializes an input scanner.
-     */
-    public Ui() {
-        scanner = new Scanner(System.in);
-    }
-
-    /**
-     * Prints the specified text with formatting.
-     * Each line is prefixed with ">>>", with a separator at the end of the message.
-     *
-     * @param text The text to be printed.
-     */
-    public void printText(String text) {
-        for (String line : text.split(System.lineSeparator())) {
-            System.out.println(">>> " + line);
-        }
-        System.out.println("----------------");
-    }
-
     /**
      * Prints the list of tasks stored in the {@code ArrayList} object for the find command.
      *
      * @param tasks The {@code ArrayList} object containing the tasks.
      */
-    public void printFindCommand(ArrayList<Task> tasks) {
+    public static String getFindCommandResponse(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
-            printText("No matching tasks found!");
-            return;
+            return "No matching tasks found!";
         }
-        System.out.printf(">>> %d matching %s found in your list.%n",
-                tasks.size(), tasks.size() == 1 ? "task" : "tasks");
-        printTasks(tasks);
+        return String.format("%d matching %s found in your list.%n%s",
+                tasks.size(), tasks.size() == 1 ? "task" : "tasks", tasksToText(tasks));
     }
 
     /**
@@ -51,51 +26,20 @@ public class Ui {
      *
      * @param tasks The {@code ArrayList} object containing the tasks.
      */
-    public void printListCommand(ArrayList<Task> tasks) {
+    public static String getListCommandResponse(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
-            printText("Nothing to do in task list. Stop slacking off!");
-            return;
+            return "Nothing to do in task list. Stop slacking off!";
         }
-        System.out.printf(">>> You have %d %s in the list. What are you waiting for?%n",
-                tasks.size(), tasks.size() == 1 ? "task" : "tasks");
-        printTasks(tasks);
+        return String.format("You have %d %s in the list. What are you waiting for?%n%s",
+                tasks.size(), tasks.size() == 1 ? "task" : "tasks", tasksToText(tasks));
     }
 
-    private void printTasks(ArrayList<Task> tasks) {
+    private static String tasksToText(ArrayList<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.printf(">>> %d. %s%n", i + 1, tasks.get(i));
+            sb.append(String.format("%d. %s%n", i + 1, tasks.get(i)));
         }
-        System.out.println("----------------");
-    }
-
-    /**
-     * Reads an input from the user.
-     *
-     * @return The trimmed user input.
-     */
-    public String readCommand() {
-        return scanner.nextLine().trim();
-    }
-
-    /**
-     * Greets the user when the application starts.
-     */
-    public void greet() {
-        printText(String.format("Hello! I'm Timitomo.%nWhat can I do for you?"));
-    }
-
-    /**
-     * Prints an error message with formatting.
-     *
-     * @param errorMsg The error message to be printed.
-     */
-    public void printError(String errorMsg) {
-        final String red = "\u001B[31m";
-        final String reset = "\u001B[0m";
-        for (String line : errorMsg.split(System.lineSeparator())) {
-            System.out.println(">>> " + red + line + reset);
-        }
-        System.out.println("----------------");
+        return sb.toString();
     }
 
     /**
@@ -104,9 +48,9 @@ public class Ui {
      * @param task The task that was added.
      * @param taskCount The updated total number of tasks.
      */
-    public void printAddCommand(Task task, int taskCount) {
-        printText(String.format("I've added this task:%n    %s%nYou have %d %s in the list.",
-                task.toString(), taskCount, taskCount == 1 ? "task" : "tasks"));
+    public static String getAddCommandResponse(Task task, int taskCount) {
+        return String.format("I've added this task:%n    %s%nYou have %d %s in the list.",
+                task.toString(), taskCount, taskCount == 1 ? "task" : "tasks");
     }
 
     /**
@@ -115,9 +59,9 @@ public class Ui {
      * @param task The task that was deleted.
      * @param taskCount The updated total number of tasks.
      */
-    public void printDeleteCommand(Task task, int taskCount) {
-        printText(String.format("Alright, I've deleted this task:%n    %s%nYou have %d %s in the list.",
-                task.toString(), taskCount, taskCount == 1 ? "task" : "tasks"));
+    public static String getDeleteCommandResponse(Task task, int taskCount) {
+        return String.format("Alright, I've deleted this task:%n    %s%nYou have %d %s in the list.",
+                task.toString(), taskCount, taskCount == 1 ? "task" : "tasks");
     }
 
     /**
@@ -125,8 +69,8 @@ public class Ui {
      *
      * @param task The task that was marked as done.
      */
-    public void printMarkCommand(Task task) {
-        printText(String.format("Nice! I've marked it as done:%n    %s", task.toString()));
+    public static String getMarkCommandResponse(Task task) {
+        return String.format("Nice! I've marked it as done:%n    %s", task.toString());
     }
 
     /**
@@ -134,7 +78,7 @@ public class Ui {
      *
      * @param task The task that was marked as not done.
      */
-    public void printUnmarkCommand(Task task) {
-        printText(String.format("I've marked it as not done yet. Get to work!%n    %s", task.toString()));
+    public static String getUnmarkCommandResponse(Task task) {
+        return String.format("I've marked it as not done yet. Get to work!%n    %s", task.toString());
     }
 }
