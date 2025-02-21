@@ -23,6 +23,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(220);
             stage.setMinWidth(417);
+            stage.setTitle("Timitomo");
             fxmlLoader.<MainWindow>getController().setTimitomo(timitomo);
             stage.show();
         } catch (IOException e) {
