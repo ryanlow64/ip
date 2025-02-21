@@ -2,6 +2,8 @@ package timitomo.tasks;
 
 import java.util.ArrayList;
 
+import timitomo.exceptions.TimitomoException;
+
 /**
  * Represents a list of tasks.
  */
@@ -38,11 +40,11 @@ public class TaskList {
      *
      * @param index The index of the task to delete.
      * @return The deleted task.
-     * @throws IllegalArgumentException If the index is invalid.
+     * @throws timitomo.exceptions.TimitomoException If the index is invalid.
      */
-    public Task deleteTask(int index) throws IllegalArgumentException {
+    public Task deleteTask(int index) throws TimitomoException {
         if (index < 0 || index >= tasks.size()) {
-            throw new IllegalArgumentException("Invalid task number!");
+            throw new TimitomoException("Invalid task number!");
         }
         return tasks.remove(index);
     }
@@ -51,11 +53,11 @@ public class TaskList {
      * Marks a task in the list as done.
      *
      * @param index The index of the task to mark as done.
-     * @throws IllegalArgumentException If the index is invalid.
+     * @throws TimitomoException If the index is invalid.
      */
-    public void markTask(int index) throws IllegalArgumentException {
+    public void markTask(int index) throws TimitomoException {
         if (index < 0 || index >= tasks.size()) {
-            throw new IllegalArgumentException("Invalid task number!");
+            throw new TimitomoException("Invalid task number!");
         }
         tasks.get(index).markAsDone();
     }
@@ -64,11 +66,11 @@ public class TaskList {
      * Marks a task in the list as not done.
      *
      * @param index The index of the task to mark as not done.
-     * @throws IllegalArgumentException If the index is invalid.
+     * @throws TimitomoException If the index is invalid.
      */
-    public void unmarkTask(int index) throws IllegalArgumentException {
+    public void unmarkTask(int index) throws TimitomoException {
         if (index < 0 || index >= tasks.size()) {
-            throw new IllegalArgumentException("Invalid task number!");
+            throw new TimitomoException("Invalid task number!");
         }
         tasks.get(index).markAsNotDone();
     }

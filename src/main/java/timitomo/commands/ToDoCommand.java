@@ -24,17 +24,12 @@ public class ToDoCommand extends Command {
 
     /**
      * Executes the todo command, adding a todo task to the task list.
-     *
-     * @param tasks The task list containing all the tasks.
-     * @param ui The UI handler for reading user inputs and printing messages.
-     * @param storage The storage handler saving the task list to the hard disk.
-     * @throws TimitomoException If an error occurs when executing the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TimitomoException {
+    public String execute(TaskList tasks, Storage storage) throws TimitomoException {
         Task task = new ToDo(description, false);
         tasks.addTask(task);
-        ui.printAddCommand(task, tasks.size());
         storage.saveTasks(tasks);
+        return Ui.getAddCommandResponse(task, tasks.size());
     }
 }
