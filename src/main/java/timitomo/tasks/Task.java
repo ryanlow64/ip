@@ -1,12 +1,12 @@
 package timitomo.tasks;
 
-import timitomo.exceptions.TimitomoException;
-import timitomo.enums.TaskType;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+
+import timitomo.enums.TaskType;
+import timitomo.exceptions.TimitomoException;
 
 /**
  * Represents a generic task in the task system, containing common functionalities for all task types.

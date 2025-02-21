@@ -1,6 +1,10 @@
 package timitomo.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import timitomo.exceptions.TimitomoException;
 import timitomo.parser.Parser;
 import timitomo.storage.Storage;
@@ -9,22 +13,19 @@ import timitomo.tasks.TaskList;
 import timitomo.ui.Ui;
 import timitomo.ui.UiStub;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 class EventCommandTest {
     @Test
     void executeTest() {
         TaskList tasks = new TaskList();
         Ui ui = new UiStub();
         Storage storage = new StorageStub();
-        assertThrows(TimitomoException.class,
-                () -> Parser.parse("event CS2103T meeting /from 13-01-2025 /to 30-04-2025 lalalalalaschizophrenia")
+        assertThrows(TimitomoException.class, () ->
+                Parser.parse("event CS2103T meeting /from 13-01-2025 /to 30-04-2025 lalalalalaschizophrenia")
                         .execute(tasks, ui, storage));
-        assertThrows(TimitomoException.class,
-                () -> Parser.parse("event CS2103T meeting /from April 20 1889 /to April 31 1945")
+        assertThrows(TimitomoException.class, () ->
+                Parser.parse("event CS2103T meeting /from April 20 1889 /to April 31 1945")
                         .execute(tasks, ui, storage));
         assertDoesNotThrow(() -> Parser.parse("event CS2103T meeting /from 20-04-1889 /to 31-04-1945")
-                .execute(tasks,ui,storage));
+                .execute(tasks, ui, storage));
     }
 }

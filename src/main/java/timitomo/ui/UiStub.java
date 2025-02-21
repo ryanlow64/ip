@@ -1,8 +1,8 @@
 package timitomo.ui;
 
-import timitomo.tasks.Task;
-
 import java.util.ArrayList;
+
+import timitomo.tasks.Task;
 
 /**
  * A stub version of the {@code Ui} class for testing purposes.

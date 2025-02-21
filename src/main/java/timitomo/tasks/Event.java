@@ -1,9 +1,9 @@
 package timitomo.tasks;
 
-import timitomo.exceptions.TimitomoException;
-import timitomo.enums.TaskType;
-
 import java.time.LocalDateTime;
+
+import timitomo.enums.TaskType;
+import timitomo.exceptions.TimitomoException;
 
 /**
  * Represents a task with a start date and time, and an end date and time.

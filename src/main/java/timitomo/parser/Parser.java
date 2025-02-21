@@ -31,14 +31,14 @@ public class Parser {
         switch (action) {
         case BYE:
             if (input.length > 1) {
-                throw new TimitomoException("You don't need anything after \"bye\". " +
-                        "Enter \"bye\" when you want to leave!");
+                throw new TimitomoException("You don't need anything after \"bye\". "
+                        + "Enter \"bye\" when you want to leave!");
             }
             return new ByeCommand();
         case LIST:
             if (input.length > 1) {
-                throw new TimitomoException("You don't need anything after \"list\". " +
-                        "Enter \"list\" to see all your tasks!");
+                throw new TimitomoException("You don't need anything after \"list\". "
+                        + "Enter \"list\" to see all your tasks!");
             }
             return new ListCommand();
         case MARK:

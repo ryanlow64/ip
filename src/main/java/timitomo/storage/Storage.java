@@ -1,15 +1,15 @@
 package timitomo.storage;
 
-import timitomo.exceptions.TimitomoException;
-import timitomo.tasks.Task;
-import timitomo.tasks.TaskList;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import timitomo.exceptions.TimitomoException;
+import timitomo.tasks.Task;
+import timitomo.tasks.TaskList;
 
 /**
  * Handles the saving and retrieval of tasks to and from a file.

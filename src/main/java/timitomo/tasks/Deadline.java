@@ -1,9 +1,9 @@
 package timitomo.tasks;
 
+import java.time.LocalDateTime;
+
 import timitomo.enums.TaskType;
 import timitomo.exceptions.TimitomoException;
-
-import java.time.LocalDateTime;
 
 /**
  * Represents a task with a deadline.

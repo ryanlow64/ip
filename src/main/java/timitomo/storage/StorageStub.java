@@ -1,9 +1,9 @@
 package timitomo.storage;
 
+import java.util.ArrayList;
+
 import timitomo.tasks.Task;
 import timitomo.tasks.TaskList;
-
-import java.util.ArrayList;
 
 /**
  * A stub version of the {@code Storage} class for testing purposes.
