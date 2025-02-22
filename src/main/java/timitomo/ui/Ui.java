@@ -2,6 +2,7 @@ package timitomo.ui;
 
 import java.util.ArrayList;
 
+import timitomo.tasks.Event;
 import timitomo.tasks.Task;
 
 /**
@@ -17,6 +18,14 @@ public class Ui {
     public static String getAddCommandResponse(Task task, int taskCount) {
         return String.format("I've added this task:%n    %s%nYou have %d %s in the list.",
                 task.toString(), taskCount, taskCount == 1 ? "task" : "tasks");
+    }
+
+    /**
+     * Returns a message with event details when its tentative slot has been confirmed.
+     * @param event The event that has been confirmed.
+     */
+    public static String getConfirmCommandResponse(Event event) {
+        return String.format("I've confirmed the slot for this event:%n    %s", event.toString());
     }
 
     /**

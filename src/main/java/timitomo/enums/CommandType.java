@@ -6,7 +6,7 @@ import timitomo.exceptions.TimitomoException;
  * Represents the types of executable commands for the chatbot.
  */
 public enum CommandType {
-    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND;
+    BYE, CONFIRM, DEADLINE, DELETE, EVENT, FIND, LIST, MARK, TODO, UNMARK;
 
     /**
      * Converts a string representation of a command to a {@code CommandType} enum.

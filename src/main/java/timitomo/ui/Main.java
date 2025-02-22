@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 /**
  * A GUI for Duke using FXML.
+ * <br />
+ * Taken from <a href="https://se-education.org/guides/tutorials/javaFx.html">here</a>.
  */
 public class Main extends Application {
     private Timitomo timitomo = new Timitomo("./data/timitomo.txt");

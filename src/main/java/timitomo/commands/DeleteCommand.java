@@ -25,9 +25,9 @@ public class DeleteCommand extends Command {
      * Executes the delete command, deleting a task from the task list.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws TimitomoException {
-        Task task = tasks.deleteTask(index);
-        storage.saveTasks(tasks);
-        return Ui.getDeleteCommandResponse(task, tasks.size());
+    public String execute(TaskList taskList, Storage storage) throws TimitomoException {
+        Task task = taskList.deleteTask(index);
+        storage.saveTasks(taskList);
+        return Ui.getDeleteCommandResponse(task, taskList.size());
     }
 }

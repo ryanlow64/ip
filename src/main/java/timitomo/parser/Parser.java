@@ -2,6 +2,7 @@ package timitomo.parser;
 
 import timitomo.commands.ByeCommand;
 import timitomo.commands.Command;
+import timitomo.commands.ConfirmCommand;
 import timitomo.commands.DeadlineCommand;
 import timitomo.commands.DeleteCommand;
 import timitomo.commands.EventCommand;
@@ -35,6 +36,15 @@ public class Parser {
                         + "Enter \"bye\" when you want to leave!");
             }
             return new ByeCommand();
+        case CONFIRM:
+            try {
+                String[] args = input[1].split(" ", 2);
+                int taskIndex = Integer.parseInt(args[0].trim()) - 1;
+                int slotIndex = Integer.parseInt(args[1].trim()) - 1;
+                return new ConfirmCommand(taskIndex, slotIndex);
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+                throw new TimitomoException("Missing details. Use: \"confirm <task number> <slot number>\"");
+            }
         case LIST:
             if (input.length > 1) {
                 throw new TimitomoException("You don't need anything after \"list\". "
@@ -80,15 +90,34 @@ public class Parser {
             }
         case EVENT:
             try {
-                String[] args = input[1].split(" /from ", 2);
-                String[] times = args[1].split(" /to ", 2);
-                String description = args[0].trim();
-                String start = times[0].trim();
-                String end = times[1].trim();
-                if (description.isEmpty() || start.isEmpty() || end.isEmpty()) {
-                    throw new ArrayIndexOutOfBoundsException();
+                if (input[1].contains("/slot")) {
+                    String[] args = input[1].split(" /slot ");
+                    String description = args[0].trim();
+                    if (args.length < 3 || description.isEmpty()) {
+                        throw new TimitomoException("Missing details. Use: \"event <description> "
+                                + "/slot <start> /to <end> /slot <start> /to <end> ...\"");
+                    }
+                    String[][] slots = new String[args.length - 1][2];
+                    for (int i = 1; i < args.length; i++) {
+                        String[] times = args[i].split(" /to ", 2);
+                        if (times.length != 2 || times[0].trim().isEmpty() || times[1].trim().isEmpty()) {
+                            throw new TimitomoException("Missing details. Use: \"event <description> "
+                                    + "/slot <start> /to <end> /slot <start> /to <end> ...\"");
+                        }
+                        slots[i - 1] = times;
+                    }
+                    return new EventCommand(description, slots);
+                } else {
+                    String[] args = input[1].split(" /from ", 2);
+                    String[] times = args[1].split(" /to ", 2);
+                    String description = args[0].trim();
+                    if (description.isEmpty() || times.length != 2
+                            || times[0].trim().isEmpty() || times[1].trim().isEmpty()) {
+                        throw new TimitomoException(
+                                "Missing details. Use: \"event <description> /from <start> /to <end>\".");
+                    }
+                    return new EventCommand(description, times);
                 }
-                return new EventCommand(description, start, end);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new TimitomoException(
                         "Missing details. Use: \"event <description> /from <start> /to <end>\".");
