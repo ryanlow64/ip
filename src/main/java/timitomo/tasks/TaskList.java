@@ -60,7 +60,11 @@ public class TaskList {
         if (index < 0 || index >= tasks.size()) {
             throw new TimitomoException("Invalid task number!");
         }
-        tasks.get(index).markAsDone();
+        try {
+            tasks.get(index).markAsDone();
+        } catch (IllegalStateException e) {
+            throw new TimitomoException(e.getMessage());
+        }
     }
 
     /**

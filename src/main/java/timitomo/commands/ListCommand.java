@@ -13,7 +13,7 @@ public class ListCommand extends Command {
      * Executes the list command, listing all the tasks.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws TimitomoException {
-        return Ui.getListCommandResponse(tasks.getAllTasks());
+    public String execute(TaskList taskList, Storage storage) throws TimitomoException {
+        return Ui.getListCommandResponse(taskList.getAllTasks());
     }
 }

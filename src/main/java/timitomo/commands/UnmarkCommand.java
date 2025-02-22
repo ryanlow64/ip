@@ -24,9 +24,9 @@ public class UnmarkCommand extends Command {
      * Executes the unmark command, marking a task as not done.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws TimitomoException {
-        tasks.unmarkTask(index);
-        storage.saveTasks(tasks);
-        return Ui.getUnmarkCommandResponse(tasks.getTask(index));
+    public String execute(TaskList taskList, Storage storage) throws TimitomoException {
+        taskList.unmarkTask(index);
+        storage.saveTasks(taskList);
+        return Ui.getUnmarkCommandResponse(taskList.getTask(index));
     }
 }

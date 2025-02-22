@@ -24,9 +24,9 @@ public class MarkCommand extends Command {
      * Executes the mark command, marking a task as done.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws TimitomoException {
-        tasks.markTask(index);
-        storage.saveTasks(tasks);
-        return Ui.getMarkCommandResponse(tasks.getTask(index));
+    public String execute(TaskList taskList, Storage storage) throws TimitomoException {
+        taskList.markTask(index);
+        storage.saveTasks(taskList);
+        return Ui.getMarkCommandResponse(taskList.getTask(index));
     }
 }

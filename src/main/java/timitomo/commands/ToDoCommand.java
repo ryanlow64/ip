@@ -26,10 +26,10 @@ public class ToDoCommand extends Command {
      * Executes the todo command, adding a todo task to the task list.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws TimitomoException {
+    public String execute(TaskList taskList, Storage storage) throws TimitomoException {
         Task task = new ToDo(description, false);
-        tasks.addTask(task);
-        storage.saveTasks(tasks);
-        return Ui.getAddCommandResponse(task, tasks.size());
+        taskList.addTask(task);
+        storage.saveTasks(taskList);
+        return Ui.getAddCommandResponse(task, taskList.size());
     }
 }

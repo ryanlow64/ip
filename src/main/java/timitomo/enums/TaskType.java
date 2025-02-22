@@ -42,10 +42,26 @@ public enum TaskType {
     EVENT("E") {
         @Override
         public Task deserializeTask(String[] args, boolean isDone) throws TimitomoException {
-            if (args.length != 5) {
+            if (args.length < 4) {
                 throw new TimitomoException("Error: corrupted text.");
             }
-            return new Event(args[2], isDone, args[3], args[4]);
+            if (args.length == 4) {
+                String[] dateTimes = args[3].split(" - ");
+                if (dateTimes.length != 2) {
+                    throw new TimitomoException("Error: corrupted text.");
+                }
+                return new Event(args[2], isDone, dateTimes[0], dateTimes[1]);
+            } else {
+                String[][] slots = new String[args.length - 3][2];
+                for (int i = 3; i < args.length; i++) {
+                    String[] slotArgs = args[i].split(" - ");
+                    if (slotArgs.length != 2) {
+                        throw new TimitomoException("Error: corrupted text.");
+                    }
+                    slots[i - 3] = slotArgs;
+                }
+                return new Event(args[2], slots);
+            }
         }
     };
 

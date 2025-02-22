@@ -11,7 +11,7 @@ public class ByeCommand extends Command {
      * Executes the bye command, terminating the chatbot application.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) {
         return "Goodbye!";
     }
 }

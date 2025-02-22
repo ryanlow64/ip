@@ -24,7 +24,7 @@ public class FindCommand extends Command {
      * Executes the find command, listing all the tasks containing the keyword.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws TimitomoException {
-        return Ui.getFindCommandResponse(tasks.findTasks(keyword));
+    public String execute(TaskList taskList, Storage storage) throws TimitomoException {
+        return Ui.getFindCommandResponse(taskList.findTasks(keyword));
     }
 }

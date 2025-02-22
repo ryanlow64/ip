@@ -10,6 +10,8 @@ import javafx.scene.layout.VBox;
 
 /**
  * Controller for the main GUI.
+ * <br />
+ * Taken from <a href="https://se-education.org/guides/tutorials/javaFx.html">here</a>.
  */
 public class MainWindow extends AnchorPane {
     @FXML
