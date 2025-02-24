@@ -1,6 +1,6 @@
 #userInput {
     -fx-padding: 10px;
-    -fx-border-color: #666666;
+    -fx-border-color: #6c3baa;
     -fx-border-radius: 8px;
     -fx-border-width: 2px;
     -fx-font: 14px "Helvetica";
@@ -9,15 +9,11 @@
     -fx-background-insets: 0;
 }
 
-#userInput:focused {
-    -fx-border-color: #6c3baa;
-}
-
 #sendButton {
-    -fx-background-color: #3caf40;
-    -fx-text-fill: white;
+    -fx-background-color: #118c06;
+    -fx-text-fill: #f8f8f8;
     -fx-font: 14px "Helvetica";
-    -fx-font-weight: bold;
+    -fx-font-weight: 700;
     -fx-background-radius: 10px;
     -fx-padding: 10px;
     -fx-margin: 15px;
@@ -35,9 +31,8 @@
 #scrollPane {
     -fx-border-color: #666666;
     -fx-focus-color: #646cff;
-    -fx-focus-color: #646cff;
 }
 
 #dialogContainer {
-    -fx-background-color: #bfbfbf;
+    -fx-background-color: #b3b3b3;
 }
