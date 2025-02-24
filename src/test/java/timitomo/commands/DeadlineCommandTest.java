@@ -24,5 +24,8 @@ class DeadlineCommandTest {
                         .execute(tasks, storage));
         assertDoesNotThrow(() -> Parser.parse("deadline submit CS2103T /by 20-04-1889")
                 .execute(tasks, storage));
+        assertThrows(TimitomoException.class, () ->
+                Parser.parse("deadline submit CS2103T /by 29-02-2025 2237")
+                        .execute(tasks, storage));
     }
 }

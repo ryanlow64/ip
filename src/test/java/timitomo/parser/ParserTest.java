@@ -70,6 +70,12 @@ class ParserTest {
         assertInstanceOf(EventCommand.class, Parser.parse("event "
                 + "aquickbrownfoxjumpsoverthelazydogaquickbrownfoxjumpsoverthelazydogthebrownfoxisnowslow "
                 + "/from 13-01-2025 /to 30-04-2025"));
+        assertInstanceOf(EventCommand.class, Parser.parse("event "
+                + "aquickbrownfoxjumpsoverthelazydogaquickbrownfoxjumpsoverthelazydogthebrownfoxisnowslow "
+                + "/slot 13-01-2025 /to 30-04-2025 0115"
+                + "/slot 14-01-2025 1537 /to 30-04-2025 /slot 11-01-2025 1111 /to 30-04-2025 2222"));
+        assertThrows(TimitomoException.class, () -> Parser.parse("event CS2103T "
+                + "/slot 13-01-2025 /to 30-04-2025 /to 14-01-2025 /slot 30-04-2025 /slot 11-01-2025 /to 30-04-2025"));
     }
 
     @Test

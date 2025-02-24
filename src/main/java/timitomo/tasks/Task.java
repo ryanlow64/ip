@@ -3,6 +3,7 @@ package timitomo.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Locale;
 
 import timitomo.enums.TaskType;
@@ -12,10 +13,12 @@ import timitomo.exceptions.TimitomoException;
  * Represents a generic task in the task system, containing common functionalities for all task types.
  */
 public abstract class Task {
-    protected static final DateTimeFormatter FORMAT_TEXT = DateTimeFormatter.ofPattern(
-            "dd-MM-yyyy HHmm", Locale.ENGLISH);
-    protected static final DateTimeFormatter FORMAT_PRINT = DateTimeFormatter.ofPattern(
-            "dd MMM yyyy HHmm", Locale.ENGLISH);
+    protected static final DateTimeFormatter FORMAT_TEXT = DateTimeFormatter
+            .ofPattern("dd-MM-yyyy HHmm", Locale.ENGLISH)
+            .withResolverStyle(ResolverStyle.SMART);
+    protected static final DateTimeFormatter FORMAT_PRINT = DateTimeFormatter
+            .ofPattern("dd MMM yyyy HHmm", Locale.ENGLISH)
+            .withResolverStyle(ResolverStyle.SMART);
     protected String description;
     protected boolean isDone;
     protected TaskType type;
@@ -43,10 +46,21 @@ public abstract class Task {
      */
     protected static LocalDateTime parseDateTime(String dateTime, String defaultTime) throws TimitomoException {
         try {
-            return LocalDateTime.parse(dateTime, FORMAT_TEXT);
+            LocalDateTime localDateTime = LocalDateTime.parse(dateTime, FORMAT_TEXT);
+            if (!FORMAT_TEXT.format(localDateTime).equals(dateTime)) {
+                throw new TimitomoException(String.format(
+                        "Invalid date: %s%nUse dd-mm-yyyy OR dd-mm-yyyy hhmm (e.g. 20-04-2025 1744)", dateTime));
+            }
+            return localDateTime;
         } catch (DateTimeParseException e1) {
             try {
-                return LocalDateTime.parse(dateTime + " " + defaultTime, FORMAT_TEXT);
+                String combinedDateTime = dateTime + " " + defaultTime;
+                LocalDateTime localDateTime = LocalDateTime.parse(combinedDateTime, FORMAT_TEXT);
+                if (!FORMAT_TEXT.format(localDateTime).equals(combinedDateTime)) {
+                    throw new TimitomoException(String.format(
+                            "Invalid date: %s%nUse dd-mm-yyyy OR dd-mm-yyyy hhmm (e.g. 20-04-2025 1744)", dateTime));
+                }
+                return localDateTime;
             } catch (DateTimeParseException e2) {
                 throw new TimitomoException(String.format(
                         "%s%nUse dd-mm-yyyy OR dd-mm-yyyy hhmm (e.g. 20-04-2025 1744)", e2.getMessage()));

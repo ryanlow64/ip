@@ -9,7 +9,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import timitomo.commands.ConfirmCommand;
 import timitomo.exceptions.TimitomoException;
+import timitomo.storage.StorageStub;
 
 public class TaskListTest {
     private TaskList taskList;
@@ -67,5 +69,29 @@ public class TaskListTest {
         assertEquals(2, taskList.findTasks("t").size());
         assertTrue(taskList.findTasks("artist").contains(event2));
         assertTrue(taskList.findTasks("schwarzenegger").isEmpty());
+    }
+
+    @Test
+    void testTentativeEvent() throws TimitomoException {
+        taskList.addTask(event1);
+        Event tentativeEvent = new Event("CS2103T meeting",
+                new String[] {"20-04-1889 1000", "20-04-1889 1200"},
+                new String[] {"30-04-1945 1000", "30-04-1945 1200"},
+                new String[] {"12-03-2025 2020", "12-03-2025 2200"},
+                new String[] {"29-04-2025 1700", "29-04-2025 1900"});
+        taskList.addTask(tentativeEvent);
+        taskList.addTask(event2);
+        assertEquals(3, taskList.size());
+        assertEquals(4, tentativeEvent.tentativeSlots.size());
+        assertThrows(IllegalStateException.class, tentativeEvent::markAsDone);
+        assertThrows(TimitomoException.class, () -> tentativeEvent.confirmSlot(-1));
+        assertThrows(TimitomoException.class, () -> event2.confirmSlot(0));
+
+        ConfirmCommand confirmCommand = new ConfirmCommand(1, 2);
+        confirmCommand.execute(taskList, new StorageStub());
+        assertEquals("12 Mar 2025 2020", tentativeEvent.start.format(Task.FORMAT_PRINT));
+        assertEquals("12 Mar 2025 2200", tentativeEvent.end.format(Task.FORMAT_PRINT));
+        assertEquals(0, tentativeEvent.tentativeSlots.size());
+        assertThrows(TimitomoException.class, () -> tentativeEvent.confirmSlot(0));
     }
 }
