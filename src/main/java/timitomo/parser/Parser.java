@@ -27,7 +27,7 @@ public class Parser {
      * @throws TimitomoException If the input format is invalid.
      */
     public static Command parse(String line) throws TimitomoException {
-        String[] input = line.split(" ", 2);
+        String[] input = line.replaceAll("\\s+", " ").strip().split(" ", 2);
         CommandType action = CommandType.getAction(input[0]);
         switch (action) {
         case BYE:
