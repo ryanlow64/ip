@@ -34,9 +34,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.prefHeightProperty().bind(scrollPane.heightProperty());
         dialogContainer.getChildren().add(
                 DialogBox.getTimitomoDialog(
-                        "Hello! I'm Timitomo." + System.lineSeparator() + "What can I do for you?", timitomoImage)
+                        "Hello, I'm Timitomo." + System.lineSeparator() + "How can I help you?", timitomoImage)
         );
     }
 

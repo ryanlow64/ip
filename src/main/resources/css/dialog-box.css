@@ -1,0 +1,20 @@
+.chat-bubble {
+    -fx-background-color: #3caf40;
+    -fx-background-radius: 1em;
+    -fx-padding: 10px 12px;
+    -fx-font: 14px "Helvetica";
+}
+
+.chat-bubble-timitomo {
+    -fx-background-color: #646cff;
+    -fx-text-fill: white;
+}
+
+.chat-bubble-user {
+    -fx-background-color: #3caf40;
+    -fx-text-fill: white;
+}
+
+.profile-pic {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+}

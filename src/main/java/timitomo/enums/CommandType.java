@@ -19,7 +19,7 @@ public enum CommandType {
         try {
             return CommandType.valueOf(type.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new TimitomoException("I don't know what that means");
+            throw new TimitomoException("I don't know what that means...");
         }
     }
 }

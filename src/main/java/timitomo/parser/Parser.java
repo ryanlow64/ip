@@ -140,7 +140,7 @@ public class Parser {
                 throw new TimitomoException("Missing keyword. What do you want to find?");
             }
         default:
-            throw new TimitomoException("I don't know what that means.");
+            throw new TimitomoException("I don't know what that means...");
         }
     }
 }

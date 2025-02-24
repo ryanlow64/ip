@@ -41,6 +41,8 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+        dialog.maxWidthProperty().bind(this.widthProperty().multiply(0.6));
+        dialog.setWrapText(true);
     }
 
     /**
@@ -54,12 +56,15 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.dialog.getStyleClass().add("chat-bubble-user");
+        return db;
     }
 
     public static DialogBox getTimitomoDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.dialog.getStyleClass().add("chat-bubble-timitomo");
         return db;
     }
 }

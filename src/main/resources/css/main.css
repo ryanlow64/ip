@@ -1,0 +1,43 @@
+#userInput {
+    -fx-padding: 10px;
+    -fx-border-color: #666666;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-font: 14px "Helvetica";
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-insets: 0;
+}
+
+#userInput:focused {
+    -fx-border-color: #6c3baa;
+}
+
+#sendButton {
+    -fx-background-color: #3caf40;
+    -fx-text-fill: white;
+    -fx-font: 14px "Helvetica";
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-margin: 15px;
+}
+
+#sendButton:hover {
+    -fx-background-color: #646cff;
+}
+
+#inputWrapper {
+    -fx-spacing: 14px;
+    -fx-padding: 10px 15px;
+}
+
+#scrollPane {
+    -fx-border-color: #666666;
+    -fx-focus-color: #646cff;
+    -fx-focus-color: #646cff;
+}
+
+#dialogContainer {
+    -fx-background-color: #bfbfbf;
+}
