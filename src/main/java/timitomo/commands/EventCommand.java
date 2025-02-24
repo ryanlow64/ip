@@ -18,7 +18,7 @@ public class EventCommand extends Command {
      * Constructs an {@code EventCommand} with the description, start time, and end time.
      *
      * @param description The description of the task.
-     * @param slots The timeslot(s) of the event.
+     * @param slots The time slot(s) of the event.
      */
     public EventCommand(String description, String[]... slots) {
         this.description = description;
