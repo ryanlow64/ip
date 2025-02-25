@@ -4,12 +4,12 @@
 
 Timitomo is a chatbot designed to help you organize your tasks effortlessly, making task management simple and stress-free.
 
-![Product screenshot](./Ui.png)
+<img src="./Ui.png" alt="Product screenshot" width="800">
 
 ## Quick start
 
-1. Ensure you have Java 17 or above installed on your device.
-1. Download the latest `.jar` file from [here](https://github.com/ryanlow64/ip).
+1. Ensure that you have Java 17 or above installed on your device.
+1. Download the latest `.jar` file from [here](https://github.com/ryanlow64/ip/releases/tag/A-Release).
 1. Copy the `.jar` file to the folder you want to use as the _home folder_ for your chatbot.
 1. Open a command terminal, `cd` into the folder you put the `.jar` file in, and run the command `java -jar timitomo.jar` to start the application.
 1. Use commands to interact with the chatbot. Refer to the [Features](#features) below for more details.
@@ -20,7 +20,7 @@ Timitomo can support 3 different kinds of tasks:
 
 * ToDo: A basic task
 * Deadline: A task with a due date
-* Event: A task with a start and end date & time\
+* Event: A task with a start and end date & time
 
 \** _More features to be released soon!_
 
@@ -54,7 +54,7 @@ bye
 
 ### Confirm
 
-Confirms a time slot for a tentative Event task.
+Confirms a time slot for a tentative `Event` task.
 
 `confirm <task index> <time slot index>`
 
@@ -132,7 +132,7 @@ Creates a basic task.
 `todo <description>`
 
 ```
-todo Grocery shopping
+todo grocery shopping
 ```
 
 ### Unmark
